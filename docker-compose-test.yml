@@ -1,0 +1,20 @@
+version: '3.8'
+services:
+  postgres:
+    image: postgres:latest
+    env_file:
+      - .env
+    ports: ['5432:5432']
+
+  app:
+    image: node:20
+    env_file:
+      - .env
+    volumes:
+      - .:/code
+    working_dir: /code
+    stdin_open: true
+    tty: true
+    command: 'npm run test:e2e'
+    ports: ['3000:3000']
+    depends_on: [postgres]
