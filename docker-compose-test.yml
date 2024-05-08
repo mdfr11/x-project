@@ -15,6 +15,6 @@ services:
     working_dir: /code
     stdin_open: true
     tty: true
-    command: 'npm run test:e2e'
+    command: /bin/sh -c "npm install && npm run test:e2e"
     ports: ['3000:3000']
     depends_on: [postgres]
